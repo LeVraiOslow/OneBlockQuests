@@ -1,0 +1,1282 @@
+# ============================================================
+# OneBlockQuests - config/quests.yml
+# Chaque catégorie contient ses quêtes, dans l'ordre (1, 2, 3...).
+#
+# Types : BREAK, PLACE, KILL, CRAFT, FISH, BREED, ENCHANT, SMELT, WALK, SWIM
+#   WALK : marcher (amount = nombre de blocs parcourus à pied)
+#   SWIM : nager   (amount = nombre de blocs parcourus dans l'eau)
+#   Pour WALK et SWIM, "target" est inutile (ou mets ANY).
+#
+# target : ANY, un nom de Material / EntityType, ou une liste.
+#          Les jokers * sont acceptés (ex: *_LOG, DIAMOND_*).
+# reward : argent donné à la fin de la quête.
+# objective (facultatif) : texte court affiché dans la bossbar ("Casser 5 blés").
+#          S'il est absent, la description est utilisée (sans le point final).
+#
+# L'emplacement et l'icône des catégories dans le menu se règlent dans
+# menus/main.yml (section "categories").
+# Couleurs : &a, &#RRGGBB et #RRGGBB sont acceptés.
+#
+# Exemples (à copier dans une catégorie, en respectant la numérotation) :
+#
+#   12:
+#     name: Randonneur
+#     description: Parcours 500 blocs à pied.
+#     type: WALK
+#     amount: 500
+#     reward: 800
+#   13:
+#     name: Nageur
+#     description: Nage sur 200 blocs.
+#     type: SWIM
+#     amount: 200
+#     reward: 800
+#
+# Attention : insérer une quête au milieu décale les numéros suivants
+# et donc la progression des joueurs. Ajoute plutôt à la fin d'une catégorie.
+# Après modification : /quetes reload
+# ============================================================
+categories:
+  debutant:
+    name: '&#7CFC00Débutant'
+    description: Les premiers pas sur ton OneBlock.
+    quests:
+      1:
+        name: Bûcheron
+        description: Casse 16 bûches de chêne.
+        type: BREAK
+        target:
+        - OAK_LOG
+        amount: 16
+        reward: 500
+      2:
+        name: Fermier
+        description: Tue 10 vaches.
+        type: KILL
+        target:
+        - COW
+        amount: 10
+        reward: 550
+      3:
+        name: Terrassier
+        description: Casse 32 blocs de terre.
+        type: BREAK
+        target:
+        - DIRT
+        - GRASS_BLOCK
+        amount: 32
+        reward: 600
+      4:
+        name: Éleveur de porcs
+        description: Tue 8 cochons.
+        type: KILL
+        target:
+        - PIG
+        amount: 8
+        reward: 650
+      5:
+        name: Poulailler
+        description: Tue 8 poulets.
+        type: KILL
+        target:
+        - CHICKEN
+        amount: 8
+        reward: 700
+      6:
+        name: Tondeur
+        description: Tue 6 moutons.
+        type: KILL
+        target:
+        - SHEEP
+        amount: 6
+        reward: 750
+      7:
+        name: Établi
+        description: Fabrique un établi.
+        type: CRAFT
+        target:
+        - CRAFTING_TABLE
+        amount: 1
+        reward: 800
+      8:
+        name: Premier outil
+        description: Fabrique une pioche en bois.
+        type: CRAFT
+        target:
+        - WOODEN_PICKAXE
+        amount: 1
+        reward: 850
+      9:
+        name: Sableur
+        description: Casse 32 blocs de sable.
+        type: BREAK
+        target:
+        - SAND
+        amount: 32
+        reward: 900
+      10:
+        name: Graviers
+        description: Casse 32 blocs de gravier.
+        type: BREAK
+        target:
+        - GRAVEL
+        amount: 32
+        reward: 950
+      11:
+        name: Mineur de pierre
+        description: Casse 64 blocs de pierre.
+        type: BREAK
+        target:
+        - STONE
+        - COBBLESTONE
+        amount: 64
+        reward: 1000
+      12:
+        name: Fournaise
+        description: Fabrique un four.
+        type: CRAFT
+        target:
+        - FURNACE
+        amount: 1
+        reward: 1050
+      13:
+        name: Charbonnier
+        description: Casse 16 minerais de charbon.
+        type: BREAK
+        target: &id001
+        - COAL_ORE
+        - DEEPSLATE_COAL_ORE
+        amount: 16
+        reward: 1100
+      14:
+        name: Éclaireur
+        description: Fabrique 16 torches.
+        type: CRAFT
+        target:
+        - TORCH
+        amount: 16
+        reward: 1150
+      15:
+        name: Pêcheur
+        description: Pêche 5 objets.
+        type: FISH
+        target:
+        - ANY
+        amount: 5
+        reward: 1200
+      16:
+        name: Chasseur de zombies
+        description: Tue 10 zombies.
+        type: KILL
+        target:
+        - ZOMBIE
+        amount: 10
+        reward: 1250
+      17:
+        name: Chasseur de squelettes
+        description: Tue 8 squelettes.
+        type: KILL
+        target:
+        - SKELETON
+        amount: 8
+        reward: 1300
+      18:
+        name: Bâtisseur
+        description: Pose 100 blocs.
+        type: PLACE
+        target:
+        - ANY
+        amount: 100
+        reward: 1350
+      19:
+        name: Pioche en pierre
+        description: Fabrique une pioche en pierre.
+        type: CRAFT
+        target:
+        - STONE_PICKAXE
+        amount: 1
+        reward: 1400
+      20:
+        name: Rangement
+        description: Fabrique 4 coffres.
+        type: CRAFT
+        target:
+        - CHEST
+        amount: 4
+        reward: 1450
+  facile:
+    name: '&#00BFFFFacile'
+    description: Les bases du minage et de l'artisanat.
+    quests:
+      1:
+        name: Bûcheron confirmé
+        description: Casse 64 bûches.
+        type: BREAK
+        target:
+        - '*_LOG'
+        amount: 64
+        reward: 1000
+      2:
+        name: Casseur de blocs
+        description: Casse 200 blocs.
+        type: BREAK
+        target:
+        - ANY
+        amount: 200
+        reward: 1100
+      3:
+        name: Mineur de fer
+        description: Casse 20 minerais de fer.
+        type: BREAK
+        target: &id002
+        - IRON_ORE
+        - DEEPSLATE_IRON_ORE
+        amount: 20
+        reward: 1200
+      4:
+        name: Fonderie
+        description: Récupère 16 lingots de fer du four.
+        type: SMELT
+        target:
+        - IRON_INGOT
+        amount: 16
+        reward: 1300
+      5:
+        name: Cuisinier
+        description: Récupère 16 viandes cuites du four.
+        type: SMELT
+        target:
+        - COOKED_BEEF
+        - COOKED_PORKCHOP
+        - COOKED_CHICKEN
+        - COOKED_MUTTON
+        amount: 16
+        reward: 1400
+      6:
+        name: Chasseur d'araignées
+        description: Tue 10 araignées.
+        type: KILL
+        target:
+        - SPIDER
+        amount: 10
+        reward: 1500
+      7:
+        name: Chasseur de creepers
+        description: Tue 8 creepers.
+        type: KILL
+        target:
+        - CREEPER
+        amount: 8
+        reward: 1600
+      8:
+        name: Pioche en fer
+        description: Fabrique une pioche en fer.
+        type: CRAFT
+        target:
+        - IRON_PICKAXE
+        amount: 1
+        reward: 1700
+      9:
+        name: Épée en fer
+        description: Fabrique une épée en fer.
+        type: CRAFT
+        target:
+        - IRON_SWORD
+        amount: 1
+        reward: 1800
+      10:
+        name: Mineur de cuivre
+        description: Casse 32 minerais de cuivre.
+        type: BREAK
+        target:
+        - COPPER_ORE
+        - DEEPSLATE_COPPER_ORE
+        amount: 32
+        reward: 1900
+      11:
+        name: Verrier
+        description: Récupère 32 verres du four.
+        type: SMELT
+        target:
+        - GLASS
+        amount: 32
+        reward: 2000
+      12:
+        name: Éleveur
+        description: Fais se reproduire 6 animaux.
+        type: BREED
+        target:
+        - ANY
+        amount: 6
+        reward: 2100
+      13:
+        name: Pêcheur confirmé
+        description: Pêche 15 objets.
+        type: FISH
+        target:
+        - ANY
+        amount: 15
+        reward: 2200
+      14:
+        name: Mineur de lapis
+        description: Casse 16 minerais de lapis-lazuli.
+        type: BREAK
+        target:
+        - LAPIS_ORE
+        - DEEPSLATE_LAPIS_ORE
+        amount: 16
+        reward: 2300
+      15:
+        name: Mineur de redstone
+        description: Casse 24 minerais de redstone.
+        type: BREAK
+        target:
+        - REDSTONE_ORE
+        - DEEPSLATE_REDSTONE_ORE
+        amount: 24
+        reward: 2400
+      16:
+        name: Plastron en fer
+        description: Fabrique un plastron en fer.
+        type: CRAFT
+        target:
+        - IRON_CHESTPLATE
+        amount: 1
+        reward: 2500
+      17:
+        name: Tueur de zombies
+        description: Tue 30 zombies.
+        type: KILL
+        target:
+        - ZOMBIE
+        amount: 30
+        reward: 2600
+      18:
+        name: Bouclier
+        description: Fabrique un bouclier.
+        type: CRAFT
+        target:
+        - SHIELD
+        amount: 1
+        reward: 2700
+      19:
+        name: Bibliothécaire
+        description: Fabrique 2 bibliothèques.
+        type: CRAFT
+        target:
+        - BOOKSHELF
+        amount: 2
+        reward: 2800
+      20:
+        name: Enchanteur
+        description: Fabrique une table d'enchantement.
+        type: CRAFT
+        target:
+        - ENCHANTING_TABLE
+        amount: 1
+        reward: 2900
+  novice:
+    name: '&#FFD700Novice'
+    description: Direction le Nether et les diamants.
+    quests:
+      1:
+        name: Mineur d'or
+        description: Casse 16 minerais d'or.
+        type: BREAK
+        target: &id003
+        - GOLD_ORE
+        - DEEPSLATE_GOLD_ORE
+        - NETHER_GOLD_ORE
+        amount: 16
+        reward: 2000
+      2:
+        name: Orfèvre
+        description: Récupère 16 lingots d'or du four.
+        type: SMELT
+        target:
+        - GOLD_INGOT
+        amount: 16
+        reward: 2200
+      3:
+        name: Mineur de diamant
+        description: Casse 8 minerais de diamant.
+        type: BREAK
+        target: &id004
+        - DIAMOND_ORE
+        - DEEPSLATE_DIAMOND_ORE
+        amount: 8
+        reward: 2400
+      4:
+        name: Pioche en diamant
+        description: Fabrique une pioche en diamant.
+        type: CRAFT
+        target:
+        - DIAMOND_PICKAXE
+        amount: 1
+        reward: 2600
+      5:
+        name: Apprenti enchanteur
+        description: Enchante 3 objets.
+        type: ENCHANT
+        target:
+        - ANY
+        amount: 3
+        reward: 2800
+      6:
+        name: Pêcheur chanceux
+        description: Pêche 30 objets.
+        type: FISH
+        target:
+        - ANY
+        amount: 30
+        reward: 3000
+      7:
+        name: Chasseur de squelettes
+        description: Tue 30 squelettes.
+        type: KILL
+        target:
+        - SKELETON
+        amount: 30
+        reward: 3200
+      8:
+        name: Chasseur de sorcières
+        description: Tue 3 sorcières.
+        type: KILL
+        target:
+        - WITCH
+        amount: 3
+        reward: 3400
+      9:
+        name: Obsidienne
+        description: Casse 8 blocs d'obsidienne.
+        type: BREAK
+        target:
+        - OBSIDIAN
+        amount: 8
+        reward: 3600
+      10:
+        name: Éleveur de moutons
+        description: Fais se reproduire 6 moutons.
+        type: BREED
+        target:
+        - SHEEP
+        amount: 6
+        reward: 3800
+      11:
+        name: Terre du Nether
+        description: Casse 128 blocs de netherrack.
+        type: BREAK
+        target:
+        - NETHERRACK
+        amount: 128
+        reward: 4000
+      12:
+        name: Quartz
+        description: Casse 32 minerais de quartz.
+        type: BREAK
+        target:
+        - NETHER_QUARTZ_ORE
+        amount: 32
+        reward: 4200
+      13:
+        name: Sables mouvants
+        description: Casse 32 blocs de sable des âmes.
+        type: BREAK
+        target:
+        - SOUL_SAND
+        - SOUL_SOIL
+        amount: 32
+        reward: 4400
+      14:
+        name: Chasseur de blazes
+        description: Tue 10 blazes.
+        type: KILL
+        target:
+        - BLAZE
+        amount: 10
+        reward: 4600
+      15:
+        name: Chasseur de piglins
+        description: Tue 20 cochons zombifiés.
+        type: KILL
+        target:
+        - ZOMBIFIED_PIGLIN
+        amount: 20
+        reward: 4800
+      16:
+        name: Épée en diamant
+        description: Fabrique une épée en diamant.
+        type: CRAFT
+        target:
+        - DIAMOND_SWORD
+        amount: 1
+        reward: 5000
+      17:
+        name: Alchimiste
+        description: Fabrique un alambic.
+        type: CRAFT
+        target:
+        - BREWING_STAND
+        amount: 1
+        reward: 5200
+      18:
+        name: Forgeron
+        description: Fabrique une enclume.
+        type: CRAFT
+        target:
+        - ANVIL
+        amount: 1
+        reward: 5400
+      19:
+        name: Grand bâtisseur
+        description: Pose 500 blocs.
+        type: PLACE
+        target:
+        - ANY
+        amount: 500
+        reward: 5600
+      20:
+        name: Casseur acharné
+        description: Casse 1000 blocs.
+        type: BREAK
+        target:
+        - ANY
+        amount: 1000
+        reward: 5800
+  normal:
+    name: '&#FFA500Normal'
+    description: Le vrai travail commence.
+    quests:
+      1:
+        name: Casseur de blocs I
+        description: Casse 500 blocs.
+        type: BREAK
+        target: &id018
+        - ANY
+        amount: 500
+        reward: 4000
+      2:
+        name: Mineur de charbon I
+        description: Casse 100 minerais de charbon.
+        type: BREAK
+        target: *id001
+        amount: 100
+        reward: 4400
+      3:
+        name: Mineur de fer I
+        description: Casse 80 minerais de fer.
+        type: BREAK
+        target: *id002
+        amount: 80
+        reward: 4800
+      4:
+        name: Mineur d'or I
+        description: Casse 50 minerais d'or.
+        type: BREAK
+        target: *id003
+        amount: 50
+        reward: 5200
+      5:
+        name: Mineur de diamant I
+        description: Casse 20 minerais de diamant.
+        type: BREAK
+        target: *id004
+        amount: 20
+        reward: 5600
+      6:
+        name: Mineur d'émeraude I
+        description: Casse 15 minerais d'émeraude.
+        type: BREAK
+        target: &id019
+        - EMERALD_ORE
+        - DEEPSLATE_EMERALD_ORE
+        amount: 15
+        reward: 6000
+      7:
+        name: Chasseur de zombies I
+        description: Tue 100 zombies.
+        type: KILL
+        target: &id020
+        - ZOMBIE
+        amount: 100
+        reward: 6400
+      8:
+        name: Chasseur de squelettes I
+        description: Tue 80 squelettes.
+        type: KILL
+        target: &id005
+        - SKELETON
+        amount: 80
+        reward: 6800
+      9:
+        name: Chasseur de creepers I
+        description: Tue 50 creepers.
+        type: KILL
+        target: &id006
+        - CREEPER
+        amount: 50
+        reward: 7200
+      10:
+        name: Chasseur d'araignées I
+        description: Tue 60 araignées.
+        type: KILL
+        target: &id007
+        - SPIDER
+        amount: 60
+        reward: 7600
+      11:
+        name: Chasseur d'endermen I
+        description: Tue 30 endermen.
+        type: KILL
+        target: &id008
+        - ENDERMAN
+        amount: 30
+        reward: 8000
+      12:
+        name: Chasseur de blazes I
+        description: Tue 30 blazes.
+        type: KILL
+        target: &id009
+        - BLAZE
+        amount: 30
+        reward: 8400
+      13:
+        name: Pêcheur I
+        description: Pêche 50 objets.
+        type: FISH
+        target: &id010
+        - ANY
+        amount: 50
+        reward: 8800
+      14:
+        name: Éleveur I
+        description: Fais se reproduire 30 animaux.
+        type: BREED
+        target: &id011
+        - ANY
+        amount: 30
+        reward: 9200
+      15:
+        name: Fondeur I
+        description: Récupère 100 lingots de fer du four.
+        type: SMELT
+        target: &id012
+        - IRON_INGOT
+        amount: 100
+        reward: 9600
+      16:
+        name: Enchanteur I
+        description: Enchante 10 objets.
+        type: ENCHANT
+        target: &id013
+        - ANY
+        amount: 10
+        reward: 10000
+      17:
+        name: Bâtisseur I
+        description: Pose 500 blocs.
+        type: PLACE
+        target: &id014
+        - ANY
+        amount: 500
+        reward: 10400
+      18:
+        name: Obsidienne I
+        description: Casse 30 blocs d'obsidienne.
+        type: BREAK
+        target: &id015
+        - OBSIDIAN
+        amount: 30
+        reward: 10800
+      19:
+        name: Bûcheron I
+        description: Casse 300 bûches.
+        type: BREAK
+        target: &id016
+        - '*_LOG'
+        amount: 300
+        reward: 11200
+      20:
+        name: Artisan I
+        description: Fabrique 200 objets.
+        type: CRAFT
+        target: &id017
+        - ANY
+        amount: 200
+        reward: 11600
+  intermediaire:
+    name: '&#FF4500Intermédiaire'
+    description: Il va falloir du courage.
+    quests:
+      1:
+        name: Chasseur de squelettes II
+        description: Tue 160 squelettes.
+        type: KILL
+        target: *id005
+        amount: 160
+        reward: 8000
+      2:
+        name: Chasseur de creepers II
+        description: Tue 100 creepers.
+        type: KILL
+        target: *id006
+        amount: 100
+        reward: 8800
+      3:
+        name: Chasseur d'araignées II
+        description: Tue 120 araignées.
+        type: KILL
+        target: *id007
+        amount: 120
+        reward: 9600
+      4:
+        name: Chasseur d'endermen II
+        description: Tue 60 endermen.
+        type: KILL
+        target: *id008
+        amount: 60
+        reward: 10400
+      5:
+        name: Chasseur de blazes II
+        description: Tue 60 blazes.
+        type: KILL
+        target: *id009
+        amount: 60
+        reward: 11200
+      6:
+        name: Pêcheur II
+        description: Pêche 100 objets.
+        type: FISH
+        target: *id010
+        amount: 100
+        reward: 12000
+      7:
+        name: Éleveur II
+        description: Fais se reproduire 60 animaux.
+        type: BREED
+        target: *id011
+        amount: 60
+        reward: 12800
+      8:
+        name: Fondeur II
+        description: Récupère 200 lingots de fer du four.
+        type: SMELT
+        target: *id012
+        amount: 200
+        reward: 13600
+      9:
+        name: Enchanteur II
+        description: Enchante 20 objets.
+        type: ENCHANT
+        target: *id013
+        amount: 20
+        reward: 14400
+      10:
+        name: Bâtisseur II
+        description: Pose 1000 blocs.
+        type: PLACE
+        target: *id014
+        amount: 1000
+        reward: 15200
+      11:
+        name: Obsidienne II
+        description: Casse 60 blocs d'obsidienne.
+        type: BREAK
+        target: *id015
+        amount: 60
+        reward: 16000
+      12:
+        name: Bûcheron II
+        description: Casse 600 bûches.
+        type: BREAK
+        target: *id016
+        amount: 600
+        reward: 16800
+      13:
+        name: Artisan II
+        description: Fabrique 400 objets.
+        type: CRAFT
+        target: *id017
+        amount: 400
+        reward: 17600
+      14:
+        name: Casseur de blocs II
+        description: Casse 1000 blocs.
+        type: BREAK
+        target: *id018
+        amount: 1000
+        reward: 18400
+      15:
+        name: Mineur de charbon II
+        description: Casse 200 minerais de charbon.
+        type: BREAK
+        target: *id001
+        amount: 200
+        reward: 19200
+      16:
+        name: Mineur de fer II
+        description: Casse 160 minerais de fer.
+        type: BREAK
+        target: *id002
+        amount: 160
+        reward: 20000
+      17:
+        name: Mineur d'or II
+        description: Casse 100 minerais d'or.
+        type: BREAK
+        target: *id003
+        amount: 100
+        reward: 20800
+      18:
+        name: Mineur de diamant II
+        description: Casse 40 minerais de diamant.
+        type: BREAK
+        target: *id004
+        amount: 40
+        reward: 21600
+      19:
+        name: Mineur d'émeraude II
+        description: Casse 30 minerais d'émeraude.
+        type: BREAK
+        target: *id019
+        amount: 30
+        reward: 22400
+      20:
+        name: Chasseur de zombies II
+        description: Tue 200 zombies.
+        type: KILL
+        target: *id020
+        amount: 200
+        reward: 23200
+  complique:
+    name: '&#FF00FFCompliqué'
+    description: Seuls les persévérants avancent.
+    quests:
+      1:
+        name: Fondeur III
+        description: Récupère 400 lingots de fer du four.
+        type: SMELT
+        target: *id012
+        amount: 400
+        reward: 16000
+      2:
+        name: Enchanteur III
+        description: Enchante 40 objets.
+        type: ENCHANT
+        target: *id013
+        amount: 40
+        reward: 17600
+      3:
+        name: Bâtisseur III
+        description: Pose 2000 blocs.
+        type: PLACE
+        target: *id014
+        amount: 2000
+        reward: 19200
+      4:
+        name: Obsidienne III
+        description: Casse 120 blocs d'obsidienne.
+        type: BREAK
+        target: *id015
+        amount: 120
+        reward: 20800
+      5:
+        name: Bûcheron III
+        description: Casse 1200 bûches.
+        type: BREAK
+        target: *id016
+        amount: 1200
+        reward: 22400
+      6:
+        name: Artisan III
+        description: Fabrique 800 objets.
+        type: CRAFT
+        target: *id017
+        amount: 800
+        reward: 24000
+      7:
+        name: Casseur de blocs III
+        description: Casse 2000 blocs.
+        type: BREAK
+        target: *id018
+        amount: 2000
+        reward: 25600
+      8:
+        name: Mineur de charbon III
+        description: Casse 400 minerais de charbon.
+        type: BREAK
+        target: *id001
+        amount: 400
+        reward: 27200
+      9:
+        name: Mineur de fer III
+        description: Casse 320 minerais de fer.
+        type: BREAK
+        target: *id002
+        amount: 320
+        reward: 28800
+      10:
+        name: Mineur d'or III
+        description: Casse 200 minerais d'or.
+        type: BREAK
+        target: *id003
+        amount: 200
+        reward: 30400
+      11:
+        name: Mineur de diamant III
+        description: Casse 80 minerais de diamant.
+        type: BREAK
+        target: *id004
+        amount: 80
+        reward: 32000
+      12:
+        name: Mineur d'émeraude III
+        description: Casse 60 minerais d'émeraude.
+        type: BREAK
+        target: *id019
+        amount: 60
+        reward: 33600
+      13:
+        name: Chasseur de zombies III
+        description: Tue 400 zombies.
+        type: KILL
+        target: *id020
+        amount: 400
+        reward: 35200
+      14:
+        name: Chasseur de squelettes III
+        description: Tue 320 squelettes.
+        type: KILL
+        target: *id005
+        amount: 320
+        reward: 36800
+      15:
+        name: Chasseur de creepers III
+        description: Tue 200 creepers.
+        type: KILL
+        target: *id006
+        amount: 200
+        reward: 38400
+      16:
+        name: Chasseur d'araignées III
+        description: Tue 240 araignées.
+        type: KILL
+        target: *id007
+        amount: 240
+        reward: 40000
+      17:
+        name: Chasseur d'endermen III
+        description: Tue 120 endermen.
+        type: KILL
+        target: *id008
+        amount: 120
+        reward: 41600
+      18:
+        name: Chasseur de blazes III
+        description: Tue 120 blazes.
+        type: KILL
+        target: *id009
+        amount: 120
+        reward: 43200
+      19:
+        name: Pêcheur III
+        description: Pêche 200 objets.
+        type: FISH
+        target: *id010
+        amount: 200
+        reward: 44800
+      20:
+        name: Éleveur III
+        description: Fais se reproduire 120 animaux.
+        type: BREED
+        target: *id011
+        amount: 120
+        reward: 46400
+  difficile:
+    name: '&#8A2BE2Difficile'
+    description: Un vrai défi pour les experts.
+    quests:
+      1:
+        name: Mineur de charbon IV
+        description: Casse 800 minerais de charbon.
+        type: BREAK
+        target: *id001
+        amount: 800
+        reward: 32000
+      2:
+        name: Mineur de fer IV
+        description: Casse 640 minerais de fer.
+        type: BREAK
+        target: *id002
+        amount: 640
+        reward: 35200
+      3:
+        name: Mineur d'or IV
+        description: Casse 400 minerais d'or.
+        type: BREAK
+        target: *id003
+        amount: 400
+        reward: 38400
+      4:
+        name: Mineur de diamant IV
+        description: Casse 160 minerais de diamant.
+        type: BREAK
+        target: *id004
+        amount: 160
+        reward: 41600
+      5:
+        name: Mineur d'émeraude IV
+        description: Casse 120 minerais d'émeraude.
+        type: BREAK
+        target: *id019
+        amount: 120
+        reward: 44800
+      6:
+        name: Chasseur de zombies IV
+        description: Tue 800 zombies.
+        type: KILL
+        target: *id020
+        amount: 800
+        reward: 48000
+      7:
+        name: Chasseur de squelettes IV
+        description: Tue 640 squelettes.
+        type: KILL
+        target: *id005
+        amount: 640
+        reward: 51200
+      8:
+        name: Chasseur de creepers IV
+        description: Tue 400 creepers.
+        type: KILL
+        target: *id006
+        amount: 400
+        reward: 54400
+      9:
+        name: Chasseur d'araignées IV
+        description: Tue 480 araignées.
+        type: KILL
+        target: *id007
+        amount: 480
+        reward: 57600
+      10:
+        name: Chasseur d'endermen IV
+        description: Tue 240 endermen.
+        type: KILL
+        target: *id008
+        amount: 240
+        reward: 60800
+      11:
+        name: Chasseur de blazes IV
+        description: Tue 240 blazes.
+        type: KILL
+        target: *id009
+        amount: 240
+        reward: 64000
+      12:
+        name: Pêcheur IV
+        description: Pêche 400 objets.
+        type: FISH
+        target: *id010
+        amount: 400
+        reward: 67200
+      13:
+        name: Éleveur IV
+        description: Fais se reproduire 240 animaux.
+        type: BREED
+        target: *id011
+        amount: 240
+        reward: 70400
+      14:
+        name: Fondeur IV
+        description: Récupère 800 lingots de fer du four.
+        type: SMELT
+        target: *id012
+        amount: 800
+        reward: 73600
+      15:
+        name: Enchanteur IV
+        description: Enchante 80 objets.
+        type: ENCHANT
+        target: *id013
+        amount: 80
+        reward: 76800
+      16:
+        name: Bâtisseur IV
+        description: Pose 4000 blocs.
+        type: PLACE
+        target: *id014
+        amount: 4000
+        reward: 80000
+      17:
+        name: Obsidienne IV
+        description: Casse 240 blocs d'obsidienne.
+        type: BREAK
+        target: *id015
+        amount: 240
+        reward: 83200
+      18:
+        name: Bûcheron IV
+        description: Casse 2400 bûches.
+        type: BREAK
+        target: *id016
+        amount: 2400
+        reward: 86400
+      19:
+        name: Artisan IV
+        description: Fabrique 1600 objets.
+        type: CRAFT
+        target: *id017
+        amount: 1600
+        reward: 89600
+      20:
+        name: Casseur de blocs IV
+        description: Casse 4000 blocs.
+        type: BREAK
+        target: *id018
+        amount: 4000
+        reward: 92800
+  impossible:
+    name: '&#555555Impossible'
+    description: Réservé aux légendes.
+    quests:
+      1:
+        name: Chasseur de creepers V
+        description: Tue 800 creepers.
+        type: KILL
+        target: *id006
+        amount: 800
+        reward: 64000
+      2:
+        name: Chasseur d'araignées V
+        description: Tue 960 araignées.
+        type: KILL
+        target: *id007
+        amount: 960
+        reward: 70400
+      3:
+        name: Chasseur d'endermen V
+        description: Tue 480 endermen.
+        type: KILL
+        target: *id008
+        amount: 480
+        reward: 76800
+      4:
+        name: Chasseur de blazes V
+        description: Tue 480 blazes.
+        type: KILL
+        target: *id009
+        amount: 480
+        reward: 83200
+      5:
+        name: Pêcheur V
+        description: Pêche 800 objets.
+        type: FISH
+        target: *id010
+        amount: 800
+        reward: 89600
+      6:
+        name: Éleveur V
+        description: Fais se reproduire 480 animaux.
+        type: BREED
+        target: *id011
+        amount: 480
+        reward: 96000
+      7:
+        name: Fondeur V
+        description: Récupère 1600 lingots de fer du four.
+        type: SMELT
+        target: *id012
+        amount: 1600
+        reward: 102400
+      8:
+        name: Enchanteur V
+        description: Enchante 160 objets.
+        type: ENCHANT
+        target: *id013
+        amount: 160
+        reward: 108800
+      9:
+        name: Bâtisseur V
+        description: Pose 8000 blocs.
+        type: PLACE
+        target: *id014
+        amount: 8000
+        reward: 115200
+      10:
+        name: Obsidienne V
+        description: Casse 480 blocs d'obsidienne.
+        type: BREAK
+        target: *id015
+        amount: 480
+        reward: 121600
+      11:
+        name: Bûcheron V
+        description: Casse 4800 bûches.
+        type: BREAK
+        target: *id016
+        amount: 4800
+        reward: 128000
+      12:
+        name: Artisan V
+        description: Fabrique 3200 objets.
+        type: CRAFT
+        target: *id017
+        amount: 3200
+        reward: 134400
+      13:
+        name: Casseur de blocs V
+        description: Casse 8000 blocs.
+        type: BREAK
+        target: *id018
+        amount: 8000
+        reward: 140800
+      14:
+        name: Mineur de charbon V
+        description: Casse 1600 minerais de charbon.
+        type: BREAK
+        target: *id001
+        amount: 1600
+        reward: 147200
+      15:
+        name: Mineur de fer V
+        description: Casse 1280 minerais de fer.
+        type: BREAK
+        target: *id002
+        amount: 1280
+        reward: 153600
+      16:
+        name: Mineur d'or V
+        description: Casse 800 minerais d'or.
+        type: BREAK
+        target: *id003
+        amount: 800
+        reward: 160000
+      17:
+        name: Mineur de diamant V
+        description: Casse 320 minerais de diamant.
+        type: BREAK
+        target: *id004
+        amount: 320
+        reward: 166400
+      18:
+        name: Mineur d'émeraude V
+        description: Casse 240 minerais d'émeraude.
+        type: BREAK
+        target: *id019
+        amount: 240
+        reward: 172800
+      19:
+        name: Chasseur de zombies V
+        description: Tue 1600 zombies.
+        type: KILL
+        target: *id020
+        amount: 1600
+        reward: 179200
+      20:
+        name: Chasseur de squelettes V
+        description: Tue 1280 squelettes.
+        type: KILL
+        target: *id005
+        amount: 1280
+        reward: 185600

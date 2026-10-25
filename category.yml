@@ -1,0 +1,83 @@
+# ============================================================
+# OneBlockQuests - menus/category.yml  (MODÈLE des menus de catégorie)
+#
+# Ce fichier est copié UNE FOIS dans menus/categories/<id>.yml pour chaque
+# catégorie (debutant.yml, facile.yml...). Modifie ces fichiers pour changer
+# le menu d'une catégorie précise : taille, titre, décor, slot de chaque quête,
+# icônes, noms, lores, objets libres...
+# (Modifier ce modèle ne change pas les fichiers déjà créés. Supprime un fichier
+#  de menus/categories/ pour qu'il soit recréé depuis ce modèle.)
+# Après modification : /quetes reload
+#
+# Icônes : MATERIAL, MATERIAL:customModelData ou nexo:id_item
+#   Plusieurs choix possibles avec | : "nexo:yess|LIME_DYE" = l'item Nexo,
+#   ou un colorant vert si Nexo est absent ou si l'item n'existe pas.
+# Slots : de 0 (haut gauche) à size-1. Ligne 1 = 0-8, ligne 2 = 9-17, etc.
+# Couleurs : &a  &#RRGGBB  #RRGGBB  -  Placeholders PlaceholderAPI (%...%) acceptés.
+# ============================================================
+
+version: 2
+
+title: "&8Quêtes &7» &r{category}"
+size: 54                          # multiple de 9, entre 9 et 54
+filler: GRAY_STAINED_GLASS_PANE   # remplit les slots vides ; vide = pas de décor
+
+# --- Emplacement des quêtes ------------------------------------
+# La 1re quête va dans le 1er slot de la liste, la 2e dans le 2e, etc.
+# Mets les slots dans l'ordre que tu veux (ligne, colonne, serpentin...).
+# Il faut au moins autant de slots que de quêtes dans la catégorie.
+quest-slots: [10, 11, 12, 13, 14, 15, 16,
+              19, 20, 21, 22, 23, 24, 25,
+              28, 29, 30, 31, 32, 33, 34,
+              37, 38, 39, 40, 41, 42, 43]
+
+# --- Apparence des quêtes ----------------------------------------
+# Chaque état : icon, name, lore, amount, glow.
+# Placeholders : {category} {number} {name} {description} {objective}
+#                {progress} {required} {percent} {reward}
+quest:
+  completed:
+    icon: "nexo:yess|LIME_DYE"
+    name: "&a✔ Quête #{number} &7- &f{name}"
+    lore:
+      - "&7Quête terminée."
+
+  current:
+    icon: WRITABLE_BOOK
+    name: "&e» Quête #{number} &7- &f{name}"
+    lore:
+      - ""
+      - "&f{description}"
+      - ""
+      - "&7Progression : &a{progress}&7/&a{required} &8({percent}%)"
+      - "&7Récompense : &6{reward}"
+      - ""
+      - "&eQuête en cours"
+
+  # Les quêtes à venir ne révèlent ni nom ni description
+  locked:
+    icon: BARRIER
+    name: "&c✖ &7Quête #{number}"
+    lore:
+      - "&7Termine la quête précédente"
+      - "&7pour la débloquer."
+
+# --- Objets libres -------------------------------------------------
+# Chaque objet : slot (ou slots: [1, 2, 3]), icon, name, lore, amount, glow,
+# enabled, action.
+# action : NONE (rien), MAIN (menu principal), CLOSE (fermer),
+#          COMMAND (+ "command: ..." exécutée par le joueur, {player} accepté)
+# Placeholders : {category} {description} {done} {total}
+#                + ceux de la quête en cours : {number} {name} {objective}
+#                  {progress} {required} {reward} {completed}
+items:
+  back:
+    slot: 49
+    icon: ARROW
+    name: "&cRetour"
+    action: MAIN
+  # Exemple de décor (retire le # devant chaque ligne pour l'activer) :
+  # border:
+  #   slots: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+  #   icon: BLACK_STAINED_GLASS_PANE
+  #   name: " "
