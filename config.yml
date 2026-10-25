@@ -1,0 +1,57 @@
+# ============================================================
+# OneBlockQuests - config/config.yml  (réglages généraux)
+#
+#   config/quests.yml     -> les quêtes et les catégories
+#   messages/messages.yml -> tous les messages envoyés aux joueurs
+#   menus/main.yml        -> menu principal (catégories)
+#   menus/category.yml    -> menu d'une catégorie (quêtes)
+#
+# Couleurs acceptées partout : &a  &#RRGGBB  #RRGGBB
+# Placeholders PlaceholderAPI (%...%) acceptés dans les menus et la bossbar.
+# Après modification : /quetes reload
+# ============================================================
+
+# --- Permissions (LuckPerms) ---------------------------------
+# À chaque étape franchie, le plugin donne une permission au joueur
+# en exécutant la commande ci-dessous depuis la console.
+permissions:
+  enabled: true
+  grant-command: "lp user {player} permission set {permission} true"
+  quest-node: "oneblockquests.quest.{category}.{number}"
+  category-node: "oneblockquests.category.{category}"
+
+# --- Récompenses ---------------------------------------------
+# mode VAULT   : l'argent est donné via Vault (votre plugin d'économie)
+# mode COMMAND : exécute la commande ci-dessous depuis la console
+rewards:
+  mode: VAULT
+  command: "eco give {player} {amount}"
+
+# --- Bossbar --------------------------------------------------
+bossbar:
+  # false = la bossbar n'existe plus du tout sur le serveur
+  # (la commande /quetes bossbar est alors désactivée aussi).
+  # true  = affichée, chaque joueur peut la masquer avec /quetes bossbar.
+  enabled: true
+  color: YELLOW        # PINK BLUE RED GREEN YELLOW PURPLE WHITE
+  overlay: PROGRESS    # PROGRESS NOTCHED_6 NOTCHED_10 NOTCHED_12 NOTCHED_20
+  format: "{category} &8#&f{number} &7- &f{name} &8[&a{progress}&7/&a{required}&8]"
+  finished-format: "&a✔ Toutes les quêtes sont terminées !"
+
+# --- Déplacements (quêtes WALK et SWIM) -----------------------
+movement:
+  # Un déplacement plus grand que cette distance (en blocs) en un seul
+  # mouvement est ignoré (lag, téléportation...).
+  max-step: 3.0
+
+# --- Placeholders (%oneblockquests_...%) ----------------------
+placeholders:
+  finished-name: "&aTerminé"
+  display-format: "{category} &8#&f{number} &7- &f{name} &8({progress}/{required})"
+
+# --- Sons (nom Minecraft, vide = aucun) -----------------------
+sounds:
+  complete: "entity.player.levelup"
+  category: "ui.toast.challenge_complete"
+  locked: "entity.villager.no"
+  click: "ui.button.click"
